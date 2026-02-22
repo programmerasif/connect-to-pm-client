@@ -2,7 +2,12 @@ import prisma from "@/db/db.config";
 import { AdminUserValidationSchema } from "@/schema/admin.schema";
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
-import { signAccessToken, signRefreshToken, REFRESH_EXPIRES } from "@/lib/auth";
+import {
+  signAccessToken,
+  signRefreshToken,
+  REFRESH_EXPIRES,
+  ACCESS_EXPIRES,
+} from "@/lib/auth";
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
@@ -42,12 +47,22 @@ export async function POST(req: NextRequest) {
   );
 
   const secure = process.env.NODE_ENV === "production";
+  // Set refresh token (httpOnly) for rotation
   res.cookies.set("refreshToken", refreshToken, {
     httpOnly: true,
     secure,
     sameSite: "lax",
     path: "/",
     maxAge: REFRESH_EXPIRES,
+  });
+
+  // Also set current access token in an httpOnly cookie so middleware can read it
+  res.cookies.set("accessToken", accessToken, {
+    httpOnly: true,
+    secure,
+    sameSite: "lax",
+    path: "/",
+    maxAge: ACCESS_EXPIRES,
   });
 
   return res;
