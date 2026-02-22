@@ -28,7 +28,7 @@ export default function PhotoGallery() {
                     {photos.map((photo) => (
                         <div
                             key={photo.id}
-                            className="group relative aspect-[4/3] overflow-hidden rounded-2xl shadow-sm transition-all hover:shadow-lg"
+                            className="group relative aspect-4/3 overflow-hidden rounded-2xl shadow-sm transition-all hover:shadow-lg"
                         >
                             <Image
                                 src={photo.src}

@@ -8,7 +8,7 @@ export default function Hero() {
             {/* Background brush strokes */}
             <div className="absolute inset-0 z-0">
                 {/* Green brush stroke - left side */}
-                <div className="absolute -left-10 top-0 h-full w-[60%] skew-x-[-6deg] bg-gradient-to-br from-green-700/10 via-green-600/5 to-transparent" />
+                <div className="absolute -left-10 top-0 h-full w-[60%] -skew-x-6 bg-linear-to-br from-green-700/10 via-green-600/5 to-transparent" />
                 {/* Red accent - top */}
                 <div className="absolute left-[10%] top-4 h-8 w-40 rounded-full bg-red-600/80" />
                 {/* Green accent label */}
@@ -56,7 +56,7 @@ export default function Hero() {
                 {/* Right Side - PM Image with branding */}
                 <div className="relative flex items-center justify-center">
                     {/* Background decoration */}
-                    <div className="absolute -right-4 -top-4 h-[90%] w-[85%] rounded-3xl bg-gradient-to-br from-green-100 to-green-50" />
+                    <div className="absolute -right-4 -top-4 h-[90%] w-[85%] rounded-3xl bg-linear-to-br from-green-100 to-green-50" />
 
                     {/* Branding badge top-right */}
                     <div className="absolute -right-2 top-0 z-20">

@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="bn">
       <body
-        className={`${hindSiliguri.variable} font-[family-name:var(--font-hind-siliguri)] antialiased`}
+        className={`${hindSiliguri.variable} font-(family-name:--font-hind-siliguri) antialiased`}
       >
         {children}
       </body>
