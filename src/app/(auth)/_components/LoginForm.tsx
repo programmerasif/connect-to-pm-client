@@ -60,33 +60,14 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 p-4">
-      {/* Background decorative elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-indigo-600/10 blur-3xl" />
-        <div className="absolute -bottom-40 -left-40 w-96 h-96 rounded-full bg-violet-600/10 blur-3xl" />
-      </div>
-
+    <div className="min-h-screen flex items-center justify-center bg-white p-6">
       <div className="relative w-full max-w-md">
-        {/* Logo / Brand */}
-        <div className="flex flex-col items-center mb-8">
-          <div className="flex items-center justify-center w-14 h-14 rounded-2xl bg-indigo-600 shadow-lg shadow-indigo-600/40 mb-4">
-            <ShieldCheck className="w-7 h-7 text-white" />
-          </div>
-          <h1 className="text-2xl font-bold text-white tracking-tight">
-            Admin Portal
-          </h1>
-          <p className="text-slate-400 text-sm mt-1">
-            Secure access for administrators
-          </p>
-        </div>
-
-        <Card className="border-slate-700/50 bg-slate-900/80 backdrop-blur-xl shadow-2xl shadow-black/40">
+        <Card className="border-slate-200 bg-white shadow-lg">
           <CardHeader className="space-y-1 pb-4">
-            <CardTitle className="text-xl font-semibold text-white">
+            <CardTitle className="text-xl font-semibold text-slate-900">
               Sign in to your account
             </CardTitle>
-            <CardDescription className="text-slate-400">
+            <CardDescription className="text-slate-600">
               Enter your credentials to access the dashboard
             </CardDescription>
           </CardHeader>
@@ -95,7 +76,7 @@ const LoginForm = () => {
             {serverError && (
               <Alert
                 variant="destructive"
-                className="mb-5 border-red-800/50 bg-red-950/50 text-red-400"
+                className="mb-5 border-red-200 bg-red-50 text-red-700"
               >
                 <AlertDescription>{serverError}</AlertDescription>
               </Alert>
@@ -111,7 +92,7 @@ const LoginForm = () => {
                   name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-slate-300 text-sm font-medium">
+                      <FormLabel className="text-slate-800 text-sm font-medium">
                         Email address
                       </FormLabel>
                       <FormControl>
@@ -121,10 +102,10 @@ const LoginForm = () => {
                           placeholder="admin@example.com"
                           autoComplete="email"
                           disabled={isSubmitting}
-                          className="bg-slate-800/60 border-slate-700 text-white placeholder:text-slate-500 focus-visible:ring-indigo-500 focus-visible:border-indigo-500 h-11 transition-colors"
+                          className="bg-white border-slate-300 text-slate-900 placeholder:text-slate-400 focus-visible:ring-indigo-500 focus-visible:border-indigo-500 h-11 transition-colors"
                         />
                       </FormControl>
-                      <FormMessage className="text-red-400 text-xs" />
+                      <FormMessage className="text-red-700 text-xs" />
                     </FormItem>
                   )}
                 />
@@ -135,15 +116,9 @@ const LoginForm = () => {
                   render={({ field }) => (
                     <FormItem>
                       <div className="flex items-center justify-between">
-                        <FormLabel className="text-slate-300 text-sm font-medium">
+                        <FormLabel className="text-slate-800 text-sm font-medium">
                           Password
                         </FormLabel>
-                        <button
-                          type="button"
-                          className="text-xs text-indigo-400 hover:text-indigo-300 transition-colors"
-                        >
-                          Forgot password?
-                        </button>
                       </div>
                       <FormControl>
                         <Input
@@ -152,10 +127,10 @@ const LoginForm = () => {
                           placeholder="••••••••"
                           autoComplete="current-password"
                           disabled={isSubmitting}
-                          className="bg-slate-800/60 border-slate-700 text-white placeholder:text-slate-500 focus-visible:ring-indigo-500 focus-visible:border-indigo-500 h-11 transition-colors"
+                          className="bg-white border-slate-300 text-slate-900 placeholder:text-slate-400 focus-visible:ring-indigo-500 focus-visible:border-indigo-500 h-11 transition-colors"
                         />
                       </FormControl>
-                      <FormMessage className="text-red-400 text-xs" />
+                      <FormMessage className="text-red-700 text-xs" />
                     </FormItem>
                   )}
                 />
@@ -163,7 +138,7 @@ const LoginForm = () => {
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full h-11 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold shadow-lg shadow-indigo-600/30 transition-all duration-200 mt-2"
+                  className="cursor-pointer w-full h-11 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold shadow-md transition-all duration-200 mt-2"
                 >
                   {isSubmitting ? (
                     <>
@@ -182,7 +157,7 @@ const LoginForm = () => {
           </CardContent>
 
           <CardFooter className="pt-0">
-            <p className="text-xs text-slate-500 text-center w-full">
+            <p className="text-xs text-slate-600 text-center w-full">
               Protected by end-to-end encryption. Your data is secure.
             </p>
           </CardFooter>

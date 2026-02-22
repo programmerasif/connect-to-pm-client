@@ -4,14 +4,21 @@ import { jwtVerify, type JWTPayload } from "jose";
 // ─── Config ───────────────────────────────────────────────────────────────────
 
 const ACCESS_SECRET = new TextEncoder().encode(
-  process.env.ACCESS_TOKEN_SECRET ?? "change-me-access-secret",
+  process.env.JWT_SECRET ?? "change-me-access-secret",
 );
 const REFRESH_SECRET = new TextEncoder().encode(
-  process.env.REFRESH_TOKEN_SECRET ?? "change-me-refresh-secret",
+  process.env.JWT_REFRESH_SECRET ??
+    process.env.JWT_SECRET ??
+    "change-me-refresh-secret",
 );
 
 /** Routes that are always public (no token required) */
-const PUBLIC_PATHS = ["/login", "/api/admin-user", "/api/auth/refresh", "/api/auth/logout"];
+const PUBLIC_PATHS = [
+  "/login",
+  "/api/admin-user",
+  "/api/auth/refresh",
+  "/api/auth/logout",
+];
 
 /** Routes that start with these prefixes and are protected */
 const PROTECTED_PREFIXES = ["/dashboard", "/api/protected"];
@@ -19,7 +26,9 @@ const PROTECTED_PREFIXES = ["/dashboard", "/api/protected"];
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
 function isPublic(pathname: string): boolean {
-  return PUBLIC_PATHS.some((p) => pathname === p || pathname.startsWith(p + "/"));
+  return PUBLIC_PATHS.some(
+    (p) => pathname === p || pathname.startsWith(p + "/"),
+  );
 }
 
 function isProtected(pathname: string): boolean {
@@ -101,6 +110,8 @@ export async function proxy(req: NextRequest) {
   const secure = process.env.NODE_ENV === "production";
   let accessToken = req.cookies.get("accessToken")?.value ?? "";
 
+  console.log(accessToken, "access token");
+
   // 3. Try to verify the existing access token
   let payload = accessToken ? await verifyAccessToken(accessToken) : null;
 
@@ -150,7 +161,6 @@ export async function proxy(req: NextRequest) {
     return response;
   }
 
-
   const response = NextResponse.next();
   response.headers.set("x-user-id", payload.sub);
   return response;
@@ -166,5 +176,7 @@ export const config = {
    *  - favicon.ico
    *  - public assets
    */
-  matcher: ["/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)"],
+  matcher: [
+    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
+  ],
 };
