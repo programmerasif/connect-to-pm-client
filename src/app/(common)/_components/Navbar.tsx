@@ -6,10 +6,10 @@ import Image from "next/image";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
-    { label: "Home", href: "/" },
-    { label: "About PM", href: "/about" },
-    { label: "Mission & Vision", href: "/mission" },
-    { label: "Complaints", href: "/complaints" },
+    { label: "হোম", href: "/" },
+    { label: "প্রধানমন্ত্রী সম্পর্কে", href: "/about" },
+    { label: "মিশন ও ভিশন", href: "/mission" },
+    { label: "অভিযোগ", href: "/complaints" },
 ];
 
 export default function Navbar() {
@@ -49,7 +49,7 @@ export default function Navbar() {
                     href="/volunteer"
                     className="hidden rounded-full bg-green-700 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-green-800 md:inline-flex"
                 >
-                    Join as a Volunteer
+                    স্বেচ্ছাসেবক হিসেবে যোগ দিন
                 </Link>
 
                 {/* Mobile Menu Toggle */}
